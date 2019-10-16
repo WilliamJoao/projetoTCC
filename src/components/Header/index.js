@@ -13,11 +13,13 @@ import {
     InputText,
 } from './styles';
 
-export default function Header({ navigation, page }) {
+export default function Header({ navigation, page = false }) {
     const cartSize = useSelector(state => state.cart.length);
 
     function handleBackContainer() {
-        NavigationService.navigate(page);
+        if (page) NavigationService.navigate(page);
+
+        NavigationService.goBack();
     }
 
     function handleBasketContainer() {

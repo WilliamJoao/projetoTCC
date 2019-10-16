@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { FlatList } from 'react-native';
+import NavigationService from '../../services/navigation';
+// import ActionButton from 'react-native-action-button';
 import * as CartActions from '../../store/modules/cart/actions';
 import colors from '../../styles/colors';
 import Header from '../../components/Header';
@@ -25,10 +27,11 @@ import {
     TotalContainer,
     TotalText,
     TotalAmount,
-    Order,
-    OrderText,
+    // Order,
+    // OrderText,
     EmptyContainer,
     EmptyText,
+    Fab,
 } from './styles';
 
 export default function Cart({ navigation }) {
@@ -105,39 +108,49 @@ export default function Cart({ navigation }) {
         );
     }
 
+    function saveList() {
+        NavigationService.navigate('MyList');
+    }
+
     return (
-        <Background>
-            <Header page="Home" />
-            <Container>
-                {products.length ? (
-                    <>
-                        <FlatList
-                            vertical
-                            data={products}
-                            // extraData={amount}
-                            keyExtractor={item => String(item.id)}
-                            renderItem={renderProduct}
-                        />
-                        <TotalContainer>
-                            <TotalText>TOTAL</TotalText>
-                            <TotalAmount>{totalPrice}</TotalAmount>
-                            <Order>
-                                <OrderText>FINALIZAR PEDIDO</OrderText>
-                            </Order>
-                        </TotalContainer>
-                    </>
-                ) : (
-                    <EmptyContainer>
-                        <Icon
-                            name="remove-shopping-cart"
-                            size={64}
-                            color="#eee"
-                        />
-                        <EmptyText>Seu carrinho está vazio.</EmptyText>
-                    </EmptyContainer>
-                )}
-            </Container>
-        </Background>
+        <>
+            <Background>
+                <Header page="Home" />
+                <Container>
+                    {products.length ? (
+                        <>
+                            <FlatList
+                                vertical
+                                data={products}
+                                // extraData={amount}
+                                keyExtractor={item => String(item.id)}
+                                renderItem={renderProduct}
+                            />
+                            <Fab onPress={saveList}>
+                                <Icon
+                                    name="playlist-add-check"
+                                    size={27}
+                                    color="#eee"
+                                />
+                            </Fab>
+                        </>
+                    ) : (
+                        <EmptyContainer>
+                            <Icon
+                                name="remove-shopping-cart"
+                                size={64}
+                                color="#eee"
+                            />
+                            <EmptyText>Seu carrinho está vazio.</EmptyText>
+                        </EmptyContainer>
+                    )}
+                </Container>
+                <TotalContainer>
+                    <TotalText>TOTAL</TotalText>
+                    <TotalAmount>{totalPrice}</TotalAmount>
+                </TotalContainer>
+            </Background>
+        </>
     );
 }
 

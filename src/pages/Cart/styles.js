@@ -3,10 +3,8 @@ import styled from 'styled-components/native';
 import colors from '../../styles/colors';
 
 export const Container = styled.View`
-    /* padding: 10px; */
     background: #fff;
     border-radius: 4px;
-    /* margin: 15px; */
     margin-top: 70px;
 `;
 
@@ -17,6 +15,7 @@ export const Background = styled.View`
 export const Products = styled.View``;
 
 export const Product = styled.View`
+    background: #fff;
     margin-bottom: 20px;
     padding: 3px;
 `;
@@ -79,19 +78,31 @@ export const ProductSubtotal = styled.Text`
 `;
 
 export const TotalContainer = styled.View`
-    margin-top: 30px;
+    margin-top: 600px;
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    background: ${colors.primary};
+    flex-direction: row;
+    justify-content: space-between;
+    z-index: 1;
 `;
 export const TotalText = styled.Text`
     text-align: center;
-    color: #999;
+    color: #fff;
     font-weight: bold;
+    font-size: 16px;
+    margin-left: 80px;
+    align-self: center;
 `;
 export const TotalAmount = styled.Text`
     text-align: center;
-    margin-top: 5px;
-    margin-bottom: 30px;
-    font-size: 32px;
+    font-size: 25px;
     font-weight: bold;
+    color: #fff;
+    padding: 10px;
+    align-self: center;
+    margin-right: 40px;
 `;
 export const Order = styled.TouchableOpacity`
     background: ${colors.primary};
@@ -118,4 +129,19 @@ export const EmptyText = styled.Text`
     font-weight: bold;
     margin-top: 18px;
     color: #555;
+`;
+
+export const Fab = styled.TouchableOpacity`
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 25px;
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+    background: ${colors.primary};
+    /* margin-left: 350px; */
+    right: 10px;
+    bottom: 160px;
 `;

@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import Location from './pages/Location';
 import Profile from './pages/Profile';
 import Cart from './pages/Cart';
+import MyList from './pages/MyList';
 import Header from './components/Header';
 
 export default (isSigned = false) =>
@@ -19,17 +20,16 @@ export default (isSigned = false) =>
             {
                 defaultNavigationOptions: navigation => ({
                     header: <Header {...navigation} />,
-                    backBehavior: NavigationService.goBack(),
                 }),
                 Sign: createSwitchNavigator({
                     SignIn,
                     SignUp,
-                    Home,
+                    Cart,
                 }),
                 App: createBottomTabNavigator(
                     {
                         Home,
-                        Cart,
+                        MyList,
                         Location,
                         Profile,
                     },
